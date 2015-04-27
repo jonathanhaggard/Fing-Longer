@@ -48,7 +48,7 @@ function move(pointer, x, y) {
 }
 
 function update() {
-	game.physics.arcade.collide(player, item, collisionHandler, null, this);
+	game.physics.arcade.overlap(player, item, collisionHandler, null, this);
 }
 
 function collisionHandler (obj1, obj2) {
