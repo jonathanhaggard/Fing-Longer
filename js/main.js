@@ -56,8 +56,8 @@ function requestLock() {
 
 function update() {
 	game.physics.arcade.overlap(player, item, centerItem, null, this);
-	game.physics.arcade.collide(item, item2, collisionHandler, null, this);
-	game.physics.arcade.collide(player, emitter, centerItem, null, this);
+	game.physics.arcade.collide(emitter, emitter, collisionHandler, null, this);
+	game.physics.arcade.overlap(player, emitter, centerItem, null, this);
 }
 
 function collisionHandler (obj1, obj2) {
@@ -79,4 +79,5 @@ function move(pointer, x, y) {
 function centerItem (obj1, obj2){
 	    item.x += game.input.mouse.event.webkitMovementX;
 	    item.body.velocity.y = 1000;
+	    item.body.enable = true;
 }
