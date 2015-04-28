@@ -3,11 +3,13 @@ var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, '
 
 function preload() {
 	game.load.image('fing', './img/fing.png');
-	game.load.image('test', './img/test.png');
+	game.load.image('item', './img/test.png');
+	game.load.image('item2', './img/test.png');
 }
 
 var player;
 var item;
+var item2;
 
 function create() {
 	game.stage.backgroundColor = '#fdb39c' 
@@ -20,20 +22,48 @@ function create() {
 	player.anchor.setTo(0.5, 0);
 	player.body.enable = true;
 	player.body.exists = true;
+
 	
-	
-	item = game.add.sprite(200, 200, 'test');
+	item = game.add.sprite(200, 200, 'item');
 	game.physics.enable(item, Phaser.Physics.ARCADE);
 	item.body.immovable = true;
 	item.body.enable = true;
+	item.body.collideWorldBounds = true;
 	
+    emitter = game.add.emitter(0, 0, window.innerWidth);
+
+    emitter.makeParticles('item', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], 200, true, true);
+
+    emitter.minParticleSpeed.setTo(-200, -300);
+    emitter.maxParticleSpeed.setTo(200, -400);
+    emitter.gravity = 150;
+    emitter.bounce.setTo(0.5, 0.5);
+	emitter.minRotation = 0;
+	emitter.maxRotation = 0;
 	
+    emitter.start(false, 8000, 1000);
+    
+    	
     game.canvas.addEventListener('mousedown', requestLock);
     game.input.addMoveCallback(move, this);
 }
 
 function requestLock() {
     game.input.mouse.requestPointerLock();
+}
+
+
+
+function update() {
+	game.physics.arcade.overlap(player, item, centerItem, null, this);
+	game.physics.arcade.collide(item, item2, collisionHandler, null, this);
+	game.physics.arcade.collide(player, emitter, centerItem, null, this);
+}
+
+function collisionHandler (obj1, obj2) {
+
+    game.stage.backgroundColor = '#992d2d';
+
 }
 
 function move(pointer, x, y) {
@@ -46,13 +76,7 @@ function move(pointer, x, y) {
     
 
 }
-
-function update() {
-	game.physics.arcade.overlap(player, item, collisionHandler, null, this);
-}
-
-function collisionHandler (obj1, obj2) {
-
-    game.stage.backgroundColor = '#992d2d';
-
+function centerItem (obj1, obj2){
+	    item.x += game.input.mouse.event.webkitMovementX;
+	    item.body.velocity.y = 1000;
 }
