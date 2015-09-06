@@ -8,10 +8,16 @@ var menuState = {
 		nameLabel.align = 'center';
 		nameLabel.anchor.set(0.5);
 		
-		var nameLabel = game.add.text(game.world.centerX, halfwindowheight /1, 'Double Click.', {font: '10vw Catamaran', fill: '#ffffff'});
+		var nameLabel = game.add.text(game.world.centerX, halfwindowheight /1.5, 'Double Click.', {font: '10vw Catamaran', fill: '#ffffff'});
 		nameLabel.align = 'center';
 		nameLabel.anchor.set(0.5);
 		
+		
+		player = game.add.sprite(game.world.centerX, game.world.centerY, 'fing');
+		game.physics.enable(player, Phaser.Physics.ARCADE);
+		player.anchor.setTo(-0.30, 0);
+		player.body.collideWorldBounds=true;
+		player.body.setSize(60, halfwindowheight);
 		
 		//on click go to play
 		game.input.onDown.add(this.start, this);

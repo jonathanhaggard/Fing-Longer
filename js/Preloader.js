@@ -4,7 +4,7 @@ var loadState = {
 		
 		game.load.image('fing', './img/fing.svg');
 		game.load.image('ring', './img/ring.png');
-		game.load.image('Bbarrier', './img/Bbarrier.png');
+		game.load.image('barrier', './img/barrier.png');
 		game.load.image('rain', './img/rain.png');
 	},
 	

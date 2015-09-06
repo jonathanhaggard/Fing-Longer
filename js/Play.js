@@ -58,7 +58,7 @@ create: function() {
 	player.body.checkCollision.left = true;
 	player.body.checkCollision.right = true;
 	
-	playerLeft = game.add.sprite(game.world.centerX, game.world.centerY, 'Bbarrier');
+	playerLeft = game.add.sprite(game.world.centerX, game.world.centerY, 'barrier');
 	game.physics.enable(playerLeft, Phaser.Physics.ARCADE);
 	player.body.collideWorldBounds=true;
 	playerLeft.body.collideWorldBounds=false;
@@ -70,7 +70,7 @@ create: function() {
 	playerLeft.body.checkCollision.left = true;
 	playerLeft.body.checkCollision.right = false;
 	
-	playerRight = game.add.sprite(game.world.centerX, game.world.centerY, 'Bbarrier');
+	playerRight = game.add.sprite(game.world.centerX, game.world.centerY, 'barrier');
 	game.physics.enable(playerRight, Phaser.Physics.ARCADE);
 	player.body.collideWorldBounds=true;
 	playerRight.body.collideWorldBounds=false;
