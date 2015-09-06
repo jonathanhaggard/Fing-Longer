@@ -114,7 +114,7 @@ function fire() {
     {
         ringParticle.frame = game.rnd.integerInRange(0,6);
         ringParticle.exists = true;
-        ringParticle.reset(game.world.randomX, 0);
+        ringParticle.reset(game.world.randomX, -100);
         ringParticle.game.physics.enable(this, Phaser.Physics.ARCADE);
 //		ringParticle.body.setSize(20, 10, 0, 0);
         ringParticle.body.bounce.y = -.8;
