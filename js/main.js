@@ -1,26 +1,10 @@
 
 var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
-//  The Google WebFont Loader will look for this object, so create it before loading the script.
-//WebFontConfig = {
-//
-//    //  'active' means all requested fonts have finished loading
-//    //  We set a 1 second delay before calling 'createText'.
-//    //  For some reason if we don't the browser cannot render the text the first time it's created.
-//    active: function() { game.time.events.add(Phaser.Timer.SECOND, createText, this); },
-//
-//    //  The Google Fonts we want to load (specify as many as you like in the array)
-//    google: {
-//      families: ['Nunito']
-//    }
-//
-//};
-
 function preload() {
 	game.load.image('fing', './img/fing.svg');
 	game.load.image('ring', './img/ring.png');
 	game.load.image('Bbarrier', './img/Bbarrier.png');
-//	game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
 }
 
 var halfwindowheight = (window.innerHeight)/2;
@@ -32,6 +16,7 @@ var emitter;
 var score = 0;
 var scoreText;
 var ringParticle;
+var shakeWorld = 0;
 
 function create() {
 	game.stage.backgroundColor = '#30BCED' 
@@ -157,15 +142,16 @@ function bounceLeft(playerLeft, ringParticle) {
 	ringParticle.body.velocity.x = -2000;
 	playerLeft.body.immovable = true;
 	console.log("bounce");
+	shakeWorld = 10;
 }
 
 function bounceRight(playerRight, ringParticle) {
 	ringParticle.body.enable = true;
 	ringParticle.body.bounce.x = 8;
 	ringParticle.body.velocity.x = 2000;
-	
 	playerRight.body.immovable = true;
 	console.log("bounce");
+	shakeWorld = 10;
 }
 
 function requestLock() {
@@ -185,6 +171,17 @@ function update() {
 	game.physics.arcade.collide(playerRight, emitter, null, bounceRight, this);
 	
     emitter.forEachAlive(checkBounds, this);
+    
+    //shake world code
+    if (shakeWorld > 0) {
+       var rand1 = game.rnd.integerInRange(-10,10);
+       var rand2 = game.rnd.integerInRange(-10,10);
+        game.world.setBounds(rand1, rand2, game.width + rand1, game.height + rand2);
+        shakeWorld--;
+        if (shakeWorld == 0) {
+            game.world.setBounds(0, 0, game.width,game.height); // normalize after shake?
+        }
+    }
 }
 
 //kills rings after they go passed the viewport height
