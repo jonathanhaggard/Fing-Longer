@@ -17,13 +17,13 @@ create: function() {
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 	
 	//add score and ignore gravity
-	scoreText = game.add.text(game.world.centerX, halfwindowheight /2, 'score', { fontSize: '10vw', fill: '#C2F970' });
+	scoreText = game.add.text(game.world.centerX, halfwindowheight /2, 'TEST YOUR MIGHT', { fontSize: '10vw', fill: '#C2F970' });
 	game.physics.enable(scoreText, Phaser.Physics.ARCADE);
 	scoreText.body.enable = true;
 	scoreText.body.exists = true;
 	scoreText.body.allowGravity = false;
-	scoreText.font = 'Nunito';
-	scoreText.align = 'left';
+	scoreText.font = 'Catamaran';
+	scoreText.align = 'center';
 	scoreText.anchor.set(0.5);
 	
 	
