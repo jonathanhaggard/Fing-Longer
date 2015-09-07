@@ -13,6 +13,7 @@ var ringParticle;
 var shakeWorld = 0;
 var timer;
 
+
 var playState = {
     	
    
@@ -179,7 +180,7 @@ update: function() {
 	function align(player, ringParticle) {
 	
 		//score add
-		score += 10;
+		score += 2;
 		scoreText.text =  score;
 		
 		//add physics and overlap to each ring particle
