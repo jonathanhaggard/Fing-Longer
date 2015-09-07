@@ -44,6 +44,7 @@ function create() {
 	player.body.checkCollision.up = false;
 	player.body.checkCollision.left = true;
 	player.body.checkCollision.right = true;
+	player.scale.setTo(2, 2);
 	
 	playerLeft = game.add.sprite(game.world.centerX, game.world.centerY, 'Bbarrier');
 	game.physics.enable(playerLeft, Phaser.Physics.ARCADE);

@@ -2,51 +2,51 @@
 <!-- Generator: Adobe Illustrator 17.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="53.012px" height="1803.078px" viewBox="-6 0 53.012 1803.078" enable-background="new -6 0 53.012 1803.078"
+	 width="53.012px" height="1803.078px" viewBox="0 0 53.012 1803.078" enable-background="new 0 0 53.012 1803.078"
 	 xml:space="preserve">
-<path fill="#2E9BE1" d="M39.37,34.225c-3.274-5.683-9.293-9.523-16.358-9.523c-7.183,0-13.29,3.89-16.524,9.682
-	C1.886,38.757-0.988,44.931-0.988,51.78v1752c0,13.255,10.745,24,24,24c13.255,0,24-10.745,24-24v-1752
-	C47.012,44.848,44.069,38.606,39.37,34.225z"/>
+<path opacity="0.2" fill="#2E9BE1" d="M45.37,34.225c-3.274-5.683-9.293-9.523-16.358-9.523c-7.183,0-13.29,3.89-16.524,9.682
+	C7.886,38.757,5.012,44.931,5.012,51.78v1752c0,13.255,10.745,24,24,24s24-10.745,24-24v-1752
+	C53.012,44.848,50.069,38.606,45.37,34.225z"/>
 <g>
 	<g>
-		<path fill="#FED6AA" d="M42,1779.078c0,13.255-10.745,24-24,24l0,0c-13.255,0-24-10.745-24-24v-1752c0-13.255,10.745-24,24-24l0,0
+		<path fill="#FED6AA" d="M48,1779.078c0,13.255-10.745,24-24,24l0,0c-13.255,0-24-10.745-24-24v-1752c0-13.255,10.745-24,24-24l0,0
 			c13.255,0,24,10.745,24,24V1779.078z"/>
 	</g>
 	<g>
-		<path fill="#F9F9F9" d="M37,48.078V19.411C37,8.737,28.674,0,18,0S-1,8.57-1,19.244v28.833H37z"/>
+		<path fill="#F9F9F9" d="M43,48.078V19.411C43,8.737,34.674,0,24,0S5,8.57,5,19.244v28.833L43,48.078L43,48.078z"/>
 	</g>
 	<g>
-		<rect x="-1" y="46.078" fill="#F2F2F2" width="38" height="2"/>
-	</g>
-	<g>
-		<g>
-			<rect x="8" y="87.078" fill="#E7B08E" width="20" height="2"/>
-		</g>
-		<g>
-			<rect x="3" y="95.078" fill="#E7B08E" width="30" height="2"/>
-		</g>
-		<g>
-			<rect x="8" y="103.078" fill="#E7B08E" width="20" height="2"/>
-		</g>
+		<rect x="5" y="46.078" fill="#F2F2F2" width="38" height="2"/>
 	</g>
 	<g>
 		<g>
-			<rect x="8" y="570.078" fill="#E7B08E" width="20" height="2"/>
+			<rect x="14" y="87.078" fill="#E7B08E" width="20" height="2"/>
 		</g>
 		<g>
-			<rect x="3" y="578.078" fill="#E7B08E" width="30" height="2"/>
+			<rect x="9" y="95.078" fill="#E7B08E" width="30" height="2"/>
 		</g>
 		<g>
-			<rect x="8" y="586.078" fill="#E7B08E" width="20" height="2"/>
+			<rect x="14" y="103.078" fill="#E7B08E" width="20" height="2"/>
 		</g>
 	</g>
 	<g>
-		
-			<rect x="14.063" y="6.988" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 14.4167 42.7514)" fill="#FFFFFF" width="4" height="22.804"/>
+		<g>
+			<rect x="14" y="570.078" fill="#E7B08E" width="20" height="2"/>
+		</g>
+		<g>
+			<rect x="9" y="578.078" fill="#E7B08E" width="30" height="2"/>
+		</g>
+		<g>
+			<rect x="14" y="586.078" fill="#E7B08E" width="20" height="2"/>
+		</g>
 	</g>
 	<g>
 		
-			<rect x="20.75" y="18.101" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 20.6625 59.9632)" fill="#FFFFFF" width="4" height="15.203"/>
+			<rect x="20.062" y="6.988" transform="matrix(0.7071 0.7071 -0.7071 0.7071 19.4653 -10.2141)" fill="#FFFFFF" width="4" height="22.804"/>
+	</g>
+	<g>
+		
+			<rect x="26.75" y="18.101" transform="matrix(0.7071 0.7071 -0.7071 0.7071 26.5951 -12.8014)" fill="#FFFFFF" width="4" height="15.203"/>
 	</g>
 </g>
 </svg>
