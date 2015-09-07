@@ -3,10 +3,12 @@ var loadState = {
 
 		
 		game.load.image('fing', './img/fing.svg');
-		game.load.image('ring', './img/ring.png');
+		game.load.image('ring', './img/ring.svg');
 		game.load.image('barrier', './img/barrier.png');
-		game.load.image('rain', './img/rain.png');
+		game.load.image('rain', './img/rain.svg');
+		game.load.image('sine', './img/sine.svg');
 		game.load.image('fingFan', './img/fingFan.svg');
+		game.load.image('landscape', './img/landscape.svg');
 	},
 	
 	create: function() {
