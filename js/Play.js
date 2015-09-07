@@ -296,7 +296,7 @@ update: function() {
 
 render: function() {
 
-    game.debug.cameraInfo(game.camera, 32, 32);
+//    game.debug.cameraInfo(game.camera, 32, 32);
 //    game.debug.body(playerLeft);
 //    game.debug.body(playerRight);
 //    game.debug.body(player);
