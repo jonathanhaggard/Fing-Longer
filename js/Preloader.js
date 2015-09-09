@@ -13,7 +13,7 @@ var loadState = {
 	
 	create: function() {
 		
-		fingFan = game.add.sprite(game.world.centerX, game.world.centerY/2, 'fingFan');
+		fingFan = game.add.sprite(game.world.centerX, game.world.centerY, 'fingFan');
 		fingFan.anchor.setTo(0.5, 0.5);
 		var tween = game.add.tween(fingFan).to( { angle: 360 }, 9000, Phaser.Easing.Linear.None, true);
 		 tween.repeat(300, 0); 

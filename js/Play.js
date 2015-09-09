@@ -12,28 +12,51 @@ var scoreText;
 var ringParticle;
 var shakeWorld = 0;
 var timer;
-
+var nameLabel;
 
 var playState = {
     	
    
 
 create: function() {
+
+
 	//locks the mouse
 	game.canvas.addEventListener('mousedown', requestLock);
 	function requestLock() {
+//		game.world.remove(nameLabel);
+		game.add.tween(nameLabel.scale).to({x: 0, y: 0}, 800, Phaser.Easing.Back.In, true);
 	    game.input.mouse.requestPointerLock();
 	}
 	
 
-
 	game.time.advancedTiming = true;
 	    game.time.desiredFps = 60;
 	    game.time.slowMotion = 1.0;
+	    
+		var wkey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+		
+		wkey.onDown.addOnce(this.start, this);
 	
 	game.world.setBounds(0, 0, window.innerWidth*1.5, window.innerHeight);
 	game.stage.backgroundColor = '#30BCED' 
 	game.physics.startSystem(Phaser.Physics.ARCADE);
+	
+	var nameLabel = game.add.text(game.world.centerX/1.5, halfwindowheight *0.4, 'Click.', {font: '25vw Catamaran', fill: '#ffffff'});
+	nameLabel.align = 'center';
+	nameLabel.anchor.set(0.5);
+	nameLabel.fixedToCamera = true;
+	
+	//add score and ignore gravity
+	scoreText = game.add.text(game.world.centerX/1.5, halfwindowheight /2, '', { fontSize: '40vw', fill: '#C2F970' });
+	game.physics.enable(scoreText, Phaser.Physics.ARCADE);
+	scoreText.body.enable = true;
+	scoreText.body.exists = true;
+	scoreText.body.allowGravity = false;
+	scoreText.font = 'Catamaran';
+	scoreText.align = 'center';
+	scoreText.anchor.set(0.5);
+	scoreText.fixedToCamera = true;
 	
 	landscape = game.add.sprite(0, window.innerHeight/2, 'landscape');
 	game.physics.enable(landscape, Phaser.Physics.ARCADE);
@@ -197,18 +220,13 @@ create: function() {
         }
     
     }
+        
     
-    
-    //add score and ignore gravity
-    scoreText = game.add.text(game.world.centerX/1.5, halfwindowheight /2, 'CLICK', { fontSize: '10vw', fill: '#C2F970' });
-    game.physics.enable(scoreText, Phaser.Physics.ARCADE);
-    scoreText.body.enable = true;
-    scoreText.body.exists = true;
-    scoreText.body.allowGravity = false;
-    scoreText.font = 'Catamaran';
-    scoreText.align = 'center';
-    scoreText.anchor.set(0.5);
-    scoreText.fixedToCamera = true;
+        if (game.input.mouse.locked)
+            {
+        	nameLabel.destroy();
+        }
+
 },
 
 
@@ -233,13 +251,25 @@ update: function() {
 //	 // set our world scale as needed
 //	 game.world.scale.set(worldScale);
 
-	
 	//aligns the ring to the finger when it overlaps
 	function align(player, ringParticle) {
 	
 		//score add
 		score += 2;
 		scoreText.text =  score;
+		
+		scalescore = (score) / 1000;
+		
+		if (scalescore < 0) {
+		  scalescore = -scalescore;
+		}
+		
+		if (scalescore > 1.2){
+			scalescore = 1.2;
+		}
+
+		
+		game.add.tween(scoreText.scale).to({x: scalescore+.1, y: scalescore+.1}, 200, Phaser.Easing.Back.In, true);
 		
 		//add physics and overlap to each ring particle
 		ringParticle.body.enable = true;
@@ -283,6 +313,14 @@ update: function() {
 	    //  Start the timer running - this is important!
 	    //  It won't start automatically, allowing you to hook it to button events and the like.
 	    timer.start();
+	    
+	    scalescore = (score) / 1000;
+		if (scalescore < 0) {
+		  scalescore = -scalescore;
+		}
+
+		
+		game.add.tween(scoreText.scale).to({x: scalescore, y: scalescore}, 200, Phaser.Easing.Back.In, true);
 	}
 	
 	function bounceRight(playerRight, ringParticle) {
@@ -303,6 +341,14 @@ update: function() {
 	    //  Start the timer running - this is important!
 	    //  It won't start automatically, allowing you to hook it to button events and the like.
 	    timer.start();
+	    
+	    scalescore = (score) / 1000;
+		if (scalescore < 0) {
+		  scalescore = -scalescore;
+		}
+
+		
+		game.add.tween(scoreText.scale).to({x: scalescore, y: scalescore}, 200, Phaser.Easing.Back.In, true);
 	}
 	
 	function normalBGcolor(){
@@ -354,9 +400,8 @@ update: function() {
     	scoreText.fill = '#FF5964';
     }
     
-    
 
-    
+         
 
 },
 
@@ -368,7 +413,13 @@ render: function() {
 //    game.debug.body(player);
 //    game.debug.body(ringParticle);
 
-}
+},
+
+start: function(){
+	game.state.start('play');
+	
+//	game.input.mouse.releasePointerLock();
+},
 
 
 };
