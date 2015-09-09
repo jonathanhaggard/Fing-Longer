@@ -27,7 +27,9 @@ create: function() {
 	
 
 
-
+	game.time.advancedTiming = true;
+	    game.time.desiredFps = 60;
+	    game.time.slowMotion = 1.0;
 	
 	game.world.setBounds(0, 0, window.innerWidth*1.5, window.innerHeight);
 	game.stage.backgroundColor = '#30BCED' 
@@ -39,9 +41,9 @@ create: function() {
 	landscape.height = window.innerHeight*0.5;
 	landscape.body.allowGravity = false;
 		
-	var sine = game.add.emitter(game.world.centerX, -1000, 5000);
-	
-	sine.width = game.world.width;
+	var sine = game.add.emitter(game.world.centerX, game.world.centerY, 5000);
+	sine.width = 1;
+	sine.height = game.world.height;
 	// sine.angle = 30; // uncomment to set an angle for the sine.
 
 	sine.makeParticles('sine');
@@ -50,13 +52,14 @@ create: function() {
 	sine.maxParticleScale = 1;
 //	sine.body.velocity.y = 90000;	
 	
-	sine.gravity.y = 9000;
-	sine.setXSpeed(-5, 5);
-	sine.setYSpeed(100, 1000);
+	sine.gravity = 0;
+	sine.setYSpeed(0, 0);
+	sine.setXSpeed(-50, 50);
+	sine.setAlpha(0.1, 1, 2000);
 	sine.minRotation = 0;
 	sine.maxRotation = 0;
 
-	sine.start(false, 8000, 500, 0);
+	sine.start(false, 800000, 2000, 0);
 		
 	
 
@@ -104,24 +107,46 @@ create: function() {
 	game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON);
 	
 	
-	var rain = game.add.emitter(game.world.centerX, -400, 5000);
-
-	rain.width = game.world.width;
-	// rain.angle = 30; // uncomment to set an angle for the rain.
-
-	rain.makeParticles('rain');
-
-	rain.minParticleScale = 0.1;
-	rain.maxParticleScale = 1;
-//	rain.body.velocity.y = 90000;	
+	var sineright = game.add.emitter(window.innerWidth*1.5, game.world.centerY, 5000);
 	
-	rain.gravity.y = 9000;
-	rain.setXSpeed(-5, 5);
-	rain.setYSpeed(500, 1000);
-	rain.minRotation = 0;
-	rain.maxRotation = 0;
+	sineright.width = 1;
+	sineright.height = game.world.height;
+	// sineright.angle = 30; // uncomment to set an angle for the sineright.
 
-	rain.start(false, 4000, 500, 0);
+	sineright.makeParticles('sine');
+	sineright.minParticleScale = 0.1;
+	sineright.maxParticleScale = 0.6;
+//	sineright.body.velocity.y = 90000;	
+	
+	sineright.gravity = 0;
+	sineright.setYSpeed(0, 0);
+	sineright.setXSpeed(-100, -200);
+	sineright.setAlpha(0.1, 1, 2000);
+	sineright.minRotation = 0;
+	sineright.maxRotation = 0;
+	
+	sineright.start(false, 80000, 1500, 0);
+	
+	
+	var sineleft = game.add.emitter(0, game.world.centerY, 5000);
+	
+	sineleft.width = 1;
+	sineleft.height = game.world.height;
+	// sineleft.angle = 30; // uncomment to set an angle for the sineleft.
+
+	sineleft.makeParticles('sine');
+	sineleft.minParticleScale = 0.1;
+	sineleft.maxParticleScale = 0.6;
+//	sineleft.body.velocity.y = 90000;	
+	
+	sineleft.gravity = 0;
+	sineleft.setYSpeed(0, 0);
+	sineleft.setXSpeed(100, 200);
+	sineleft.setAlpha(0.1, 1, 2000);
+	sineleft.minRotation = 0;
+	sineleft.maxRotation = 0;
+	
+	sineleft.start(false, 80000, 1500, 0);
 	
 	//add emittter group
 	ringEmitter = game.add.group();
@@ -129,7 +154,7 @@ create: function() {
 	ringEmitter.createMultiple(250, 'ring', 0, false);
     
     //global gravity and enable gameworld
-    game.physics.arcade.gravity.y = 300;
+//    game.physics.arcade.gravity.y = 300;
     game.physics.arcade.enable(game.world, true);
     
     //every 800ms execute the fire function to generate rings
@@ -165,6 +190,7 @@ create: function() {
             ringParticle.exists = true;
             ringParticle.anchor.setTo(.85, 0);
             ringParticle.reset(game.world.randomX, -100);
+            ringParticle.body.gravity.y = 300;
             ringParticle.game.physics.enable(this, Phaser.Physics.ARCADE);
     //		ringParticle.body.setSize(20, 10, 0, 0);
             ringParticle.body.bounce.y = -.8;
@@ -174,7 +200,7 @@ create: function() {
     
     
     //add score and ignore gravity
-    scoreText = game.add.text(game.world.centerX/1.5, halfwindowheight /2, 'BEGIN', { fontSize: '10vw', fill: '#C2F970' });
+    scoreText = game.add.text(game.world.centerX/1.5, halfwindowheight /2, 'CLICK', { fontSize: '10vw', fill: '#C2F970' });
     game.physics.enable(scoreText, Phaser.Physics.ARCADE);
     scoreText.body.enable = true;
     scoreText.body.exists = true;
@@ -220,11 +246,9 @@ update: function() {
 		ringParticle.x += game.input.mouse.event.movementX;
 		ringParticle.body.velocity.x = 0;	
 		ringParticle.body.velocity.y = 2000;
-		ringParticle.body.bounce.y = -0.3;
-		game.physics.arcade.gravity.y = -3000;
+		ringParticle.body.bounce.y = 300000;
 		game.stage.backgroundColor = '#C2F970';
-		scoreText.fill = '#fff';
-		
+		scoreText.fill = '#fff';		
 		timer = game.time.create(false);
 		timer.add(100, normalBGcolor, this);
 		timer.start();
@@ -244,7 +268,7 @@ update: function() {
 	
 	function bounceLeft(playerLeft, ringParticle) {
 		ringParticle.body.enable = true;
-		ringParticle.body.bounce.x = 8;
+		ringParticle.body.bounce.x = 0.5;
 		ringParticle.body.velocity.x = -2000;
 		playerLeft.body.immovable = true;
 		console.log("bounce");
@@ -263,7 +287,7 @@ update: function() {
 	
 	function bounceRight(playerRight, ringParticle) {
 		ringParticle.body.enable = true;
-		ringParticle.body.bounce.x = 8;
+		ringParticle.body.bounce.x = 0.5;
 		ringParticle.body.velocity.x = 2000;
 		playerRight.body.immovable = true;
 		console.log("bounce");
@@ -284,7 +308,6 @@ update: function() {
 	function normalBGcolor(){
 		game.stage.backgroundColor = '#30BCED';
 		scoreText.fill = '#C2F970';
-		game.physics.arcade.gravity.y = 300;
 	}
 	
 	//physics colliders
@@ -330,6 +353,10 @@ update: function() {
     if (score < 0){
     	scoreText.fill = '#FF5964';
     }
+    
+    
+
+    
 
 },
 

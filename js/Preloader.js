@@ -22,7 +22,7 @@ var loadState = {
 		 loadingLabel.align = 'center';
 		 loadingLabel.anchor.set(0.5);
 		 
-		 game.state.start('menu');
+		 game.state.start('play');
 		 
 	}
 };
